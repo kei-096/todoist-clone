@@ -3,7 +3,7 @@ class CreateTodos < ActiveRecord::Migration[5.2]
     create_table :todos do |t|
       t.belongs_to :user, index: true
       t.datetime :due_date
-      t.priority :integer
+      t.integer :priority
       t.timestamps
     end
   end
