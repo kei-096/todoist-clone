@@ -8,7 +8,10 @@ Rails.application.routes.draw do
 
   get '/signup' => 'users#new'
   post '/users' => 'users#create'
+
+  get "/auth/:provider/callback" => "sessions#create_from_omniauth"
+  get "/auth/google_oauth2" => "sessions#create_from_omniauth"
   # resources :welcome
   # resources :users
-  # resources :todos
+  resources :todos
 end

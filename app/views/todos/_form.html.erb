@@ -1,0 +1,5 @@
+<%= form_for @todo, url: {action: "create"},  html: {class: "ui form"} do |f|%>
+	<%= f.text_field :title %>
+	<%= f.select_datetime :due_date %>
+	<%= f.select :priority, (1...4) %>
+<% end %>
