@@ -1,0 +1,6 @@
+<%= form_for @todo, url: {action: "update"} do |f|%>
+	<%= f.text_field :title %></br>
+	<%= f.datetime_select :due_date %></br>
+	<%= f.select :priority, (1...5) %></br>
+	<%= f.submit 'Save' %>
+<% end %>
