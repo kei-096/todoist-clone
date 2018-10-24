@@ -1,1 +1,6 @@
-<% render 'form' %>
+<%= form_for @todo, url: {action: "create"} do |f|%>
+	Title: <%= f.text_field :title %></br>
+	Due Date: <%= f.datetime_select :due_date %></br>
+	Priority: <%= f.select :priority, (1...5) %></br>
+	<%= f.submit 'Add Task' %>
+<% end %>
