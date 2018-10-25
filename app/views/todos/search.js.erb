@@ -1,0 +1,6 @@
+<% content = @todos.map do |todo| %>
+	<% "<div class='item'> <i class='circle outline icon'></i> <div class='content'> <span><p style='line-height: 1em;' id='todo#{todo.id}'>  #{link_to "#{todo.title}", todo_path(todo.id) } | #{todo.due_date.strftime('%b %d %H:%M')} | #{link_to 'Edit', edit_todo_path(todo.id)} |  #{link_to 'Delete', todo_path(todo.id), :method => :delete} </p></span></div> </div>" %>
+<% end %>
+var todos = <%= raw content.join().to_json %>
+$('#todo-list').find('div').remove();
+$('#todo-list').html(todos);

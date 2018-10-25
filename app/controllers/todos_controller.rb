@@ -3,10 +3,28 @@ class TodosController < ApplicationController
 
 	def index
 		@todos = Todo.where(user_id: current_user.id)
+		# render :partial => "todo.html.erb", :collection => Todo.where(user_id: current_user.id)
+		@todo = Todo.new
 	end
 
 	def new	
 		@todo = Todo.new
+	end
+
+	def show
+		@todo = Todo.find(params[:id])
+	end
+
+	def ajax_find
+		@todo = Todo.find(params[:id])
+		# This is new AJAX
+		# respond_to do |format|
+		# 		format.js
+		# 		format.html
+		# end
+
+		#This is traditional AJAX
+		render json: @todo
 	end
 
 	def create
@@ -34,6 +52,19 @@ class TodosController < ApplicationController
 		todo = Todo.find(params[:id])
 		todo.destroy
 		redirect_to todos_path
+	end
+
+	def search
+		if params[:query].present?
+			@todos = Todo.search_name(params[:query])
+			@todo = Todo.new
+			respond_to do |format|
+				format.js
+				format.html
+			end
+		else
+			@todos = Todo.all
+		end
 	end
 
 	private

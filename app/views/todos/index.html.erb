@@ -1,20 +1,31 @@
-<h1>Hello</h1>
-
+<h1>Your Todos</h1>
+<h2></h2>
 <div class="ui grid">
 	<div class="six wide column">
 		<i class="large inbox icon"></i>Inbox
+		<div class="ui search">
+		  <div class="ui icon input">
+		    <%= form_for @todo, :remote => true, url:{controller: 'todos', action: 'search'} do |f| %>
+		    <%= f.text_field :title, :name => "query", :id => 'query', :placeholder => "Quick Find", :class => 'prompt' %>
+		    <i class="search icon"></i>
+		    <%= f.submit "Search" , :id => "search" %>
+		    <% end %>
+		  </div>
+		  <div class="results"></div>
+		</div>
 	</div>
 	<div class="ten wide column">
-		<div class="ui relaxed divided list">
+		<div class="ui relaxed divided list" id="todo-list">
 		<% if @todos %>
 		<% @todos.each do |todo| %>
-		  <div class="item">
-		    <i class="circle outline icon"></i>
-		    <div class="content">
-		      <span><p style="line-height: 1em; */" id="todo<%= todo.id %>"><%= todo.title %> | <%= todo.due_date.strftime('%b %d %H:%M') %> | <%= link_to 'Edit', edit_todo_path(todo.id) %> | <%= link_to 'Delete', todo_path(todo.id), :method => :delete %></p></span>
-		      <!-- <div class="description">Updated 10 mins ago</div> -->
-		    </div>
-		  </div>
+		<div class="item">
+			<i class="circle outline icon"></i>
+			<div class="content">
+			  <span><p style="line-height: 1em;" id="<%= todo.id %>"><%= link_to todo_path(todo.id) do %> <%= todo.title %> <% end %>| <%= todo.due_date.strftime('%b %d %H:%M') %> | <button class="modal-show"><i class="comment outline icon modal" ></i></button> | <%= link_to 'Edit', edit_todo_path(todo.id) %> | <%= link_to 'Delete', todo_path(todo.id), :method => :delete %></p></span>
+			  
+			  <!-- <div class="description">Updated 10 mins ago</div> -->
+			</div>
+		</div>
 		<% end %>
 		<% end %>
 		</div>
@@ -22,3 +33,30 @@
 		<i class="large plus icon"></i> <%= link_to 'Add Task', new_todo_path %> 
 	</div>
 </div>
+
+<div class="ui modal">
+  <i class="close icon"></i>
+  <div class="header">
+  	<h3 id="modal-title"></h3>
+  	<p id="modal-due"></p>
+  </div>
+  <div class="content">
+    <div class="description">
+  </div>
+  <div class="actions">
+    <div class="ui positive left labeled icon button">
+      Add Comment
+      <i class="checkmark icon"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+<script type="text/javascript">
+// 	function showModal(){
+// 	$('.ui.modal').modal('show');
+// };
+</script>

@@ -11,6 +11,13 @@ Rails.application.routes.draw do
 
   get "/auth/:provider/callback" => "sessions#create_from_omniauth"
   get "/auth/google_oauth2" => "sessions#create_from_omniauth"
+
+  # get "todos/search" => "todos#search"
+  post "todos/search" => "todos#search"
+
+  get "todos/:id/find" => "todos#ajax_find"
+
+  # resources :search, only: [:index]
   # resources :welcome
   # resources :users
   resources :todos
