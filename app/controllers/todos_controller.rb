@@ -15,6 +15,18 @@ class TodosController < ApplicationController
 		@todo = Todo.find(params[:id])
 	end
 
+	def ajax_find
+		@todo = Todo.find(params[:id])
+		# This is new AJAX
+		# respond_to do |format|
+		# 		format.js
+		# 		format.html
+		# end
+
+		#This is traditional AJAX
+		render json: @todo
+	end
+
 	def create
 		@todo = current_user.todos.new(todo_params)
 
