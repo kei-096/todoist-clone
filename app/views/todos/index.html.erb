@@ -33,8 +33,9 @@
 		<i class="large plus icon"></i> <%= link_to 'Add Task', new_todo_path %> 
 	</div>
 </div>
-
-<div class="ui modal">
+<% if @todos %>
+<% @todos.each do |todo| %>
+<div class="ui modal" id="modal<%=todo.id%>">
   <i class="close icon"></i>
   <div class="header">
   	<h3 id="modal-title"></h3>
@@ -44,19 +45,19 @@
     <div class="description">
   </div>
   <div class="actions">
-    <div class="ui positive left labeled icon button">
-      Add Comment
-      <i class="checkmark icon"></i>
+    <div class="ui left labeled icon button" id="add-gif">
+      Add GIF
+      <i class="search icon"></i>
     </div>
+      <div class="ui search gif" id="hidden-gif-search" style="display: none;">
+		  <div class="ui icon input">
+		    <input class="prompt" type="text" placeholder="Type something crazy...">
+		    <i class="search icon"></i>
+		  </div>
+		  <div class="results"></div>
+	  </div>
   </div>
 </div>
+<% end %>
+<% end %>
 
-
-
-
-
-<script type="text/javascript">
-// 	function showModal(){
-// 	$('.ui.modal').modal('show');
-// };
-</script>
