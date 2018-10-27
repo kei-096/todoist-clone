@@ -4,7 +4,7 @@ class User < ApplicationRecord
 	include BCrypt
 	has_secure_password
 	has_many :todos
-	validates :email, uniqueness: true
+	validates :email, uniquness: true
 	validates :name, :email, presence: true
 
 	def self.create_with_auth_and_hash(authentication, auth_hash)
