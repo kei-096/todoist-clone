@@ -43,12 +43,24 @@
   </div>
   <div class="content">
     <div class="description" id="description-add-gif<%=todo.id%>">
+    	 <% if !todo.images.empty? %>
+    	 	<%= todo.images.each do |image| %>
+    	 		<%= image_tag(image.url, :class => "ui medium rounded image") %>
+    	 	<% end %>
+    	 <% end %>
   </div>
   <div class="actions">
-    <div class="ui left labeled icon button" id="add-gif<%=todo.id%>">
-      Add GIF
-      <i class="search icon"></i>
+	<hr>
+    <div class="ui icon button" id="add-gif<%=todo.id%>">
+      <i class="smile outline icon"></i>
     </div>
+    <%= form_for todo, url: todo_add_image_path(todo.id), html: {:class => "image-form", :id => "form#{todo.id}"}, method: :post do |f| %>
+	    <label for="file-input" class="ui icon button">
+	  		<i class="images outline icon"></i>
+		</label>
+    	<%= f.file_field :images, multiple: true, id:"file-input" %>
+    	<%= f.submit %>
+    <% end %>
       <div class="ui search gif" id="hidden-gif-search-add-gif<%=todo.id%>" style="display: none;">
 		  <div class="ui icon input">
 		    <input class="prompt" type="text" placeholder="Type something crazy...">
@@ -60,4 +72,15 @@
 </div>
 <% end %>
 <% end %>
+
+<style type="text/css">
+	#file-input {
+		display: none;
+	}
+
+	.image-form {
+		display: inline;
+	}
+
+</style>
 

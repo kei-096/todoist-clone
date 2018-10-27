@@ -1,7 +1,3 @@
-// function showModal(){
-// 	$('.ui.modal').modal('show');
-// };
-
 $(document).ready(function(){
 	$('[id^=modal-show]').click(function(event){
 		event.preventDefault();
@@ -31,14 +27,29 @@ $(document).ready(function(){
 			}
 		})
 	});
+
+	// $('[id^=form]').submit(function(event){
+	// 	event.preventDefault();
+	// 	let e = $(this)
+	// 	console.log(e)
+	// 	todoId = e[0].id.match(/\d+/)[0];
+	// 	console.log(todoId)
+	// 	$.ajax({
+	// 		url: `/todos/${todoId}/add_image`,
+	// 		type: 'POST',
+	// 		dataType: 'json',
+	// 		success: function(data){
+	// 			console.log(data)
+	// 		}
+	// 	})
+	// });
+
 	$('[id^=add-gif]').click(function(event){
 		let e = $(this)
 		let gifId = e[0].id
 		event.preventDefault();
-		$(`#${gifId}`).hide();
 		$(`#hidden-gif-search-${gifId}`).fadeToggle();
-		$(`#close-icon-in-add-gif${gifId}`).click(function(){
-			$(`#${gifId}`).show();
+		$(`#close-icon-in-${gifId}`).click(function(){
 			$(`#hidden-gif-search-${gifId}`).hide();
 		});
 	});

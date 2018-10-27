@@ -17,6 +17,8 @@ Rails.application.routes.draw do
 
   get "todos/:id/find" => "todos#ajax_find"
 
+  post "todos/:id/add_image" => "todos#add_image", :as => 'todo_add_image'
+
   # resources :search, only: [:index]
   # resources :welcome
   # resources :users

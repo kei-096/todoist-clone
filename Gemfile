@@ -68,3 +68,6 @@ gem "figaro"
 gem 'faker'
 gem 'pg_search'
 gem 'GiphyClient'
+gem 'carrierwave', '~> 1.0'
+gem 'remotipart', github: 'mshibuya/remotipart', ref: '88d9a7'
+gem 'jquery-rails'

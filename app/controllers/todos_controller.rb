@@ -48,6 +48,13 @@ class TodosController < ApplicationController
 		redirect_to todos_path
 	end
 
+	def add_image
+		@todo = Todo.find(params['id'])
+		@todo.update(image_params)
+		byebug
+		redirect_to todos_path
+	end
+
 	def destroy
 		todo = Todo.find(params[:id])
 		todo.destroy
@@ -70,5 +77,9 @@ class TodosController < ApplicationController
 	private
 	def todo_params
 		params.require(:todo).permit(:title, :due_date, :priority)
+	end
+
+	def image_params
+		params.require(:todo).permit(:id, {images: []})
 	end
 end
