@@ -21,7 +21,7 @@
 		<div class="item">
 			<i class="circle outline icon"></i>
 			<div class="content">
-			  <span><p style="line-height: 1em;" id="<%= todo.id %>"><%= link_to todo_path(todo.id) do %> <%= todo.title %> <% end %>| <%= todo.due_date.strftime('%b %d %H:%M') %> | <button class="modal-show"><i class="comment outline icon modal" ></i></button> | <%= link_to 'Edit', edit_todo_path(todo.id) %> | <%= link_to 'Delete', todo_path(todo.id), :method => :delete %></p></span>
+			  <span><p style="line-height: 1em;" id="<%= todo.id %>"><%= link_to todo_path(todo.id) do %> <%= todo.title %> <% end %>| <%= todo.due_date.strftime('%b %d %H:%M') %> | <button id="modal-show<%=todo.id%>"><i class="comment outline icon modal" ></i></button> | <%= link_to 'Edit', edit_todo_path(todo.id) %> | <%= link_to 'Delete', todo_path(todo.id), :method => :delete %></p></span>
 			  
 			  <!-- <div class="description">Updated 10 mins ago</div> -->
 			</div>
@@ -33,30 +33,54 @@
 		<i class="large plus icon"></i> <%= link_to 'Add Task', new_todo_path %> 
 	</div>
 </div>
-
-<div class="ui modal">
-  <i class="close icon"></i>
+<% if @todos %>
+<% @todos.each do |todo| %>
+<div class="ui modal" id="modal<%=todo.id%>">
+  <i class="close icon" id="close-icon-in-add-gif<%=todo.id%>"></i>
   <div class="header">
-  	<h3 id="modal-title"></h3>
-  	<p id="modal-due"></p>
+  	<h3 id="modal-title<%=todo.id%>"></h3>
+  	<p id="modal-due<%=todo.id%>"></p>
   </div>
   <div class="content">
-    <div class="description">
+    <div class="description" id="description-add-gif<%=todo.id%>">
+    	 <% if !todo.images.empty? %>
+    	 	<%= todo.images.each do |image| %>
+    	 		<%= image_tag(image.url, :class => "ui medium rounded image") %>
+    	 	<% end %>
+    	 <% end %>
   </div>
   <div class="actions">
-    <div class="ui positive left labeled icon button">
-      Add Comment
-      <i class="checkmark icon"></i>
+	<hr>
+    <div class="ui icon button" id="add-gif<%=todo.id%>">
+      <i class="smile outline icon"></i>
     </div>
+    <%= form_for todo, url: todo_add_image_path(todo.id), html: {:class => "image-form", :id => "form#{todo.id}"}, method: :post do |f| %>
+	    <label for="file-input" class="ui icon button">
+	  		<i class="images outline icon"></i>
+		</label>
+    	<%= f.file_field :images, multiple: true, id:"file-input" %>
+    	<%= f.submit %>
+    <% end %>
+      <div class="ui search gif" id="hidden-gif-search-add-gif<%=todo.id%>" style="display: none;">
+		  <div class="ui icon input">
+		    <input class="prompt" type="text" placeholder="Type something crazy...">
+		    <i class="search icon"></i>
+		  </div>
+		  <div class="results"></div>
+	  </div>
   </div>
 </div>
+<% end %>
+<% end %>
 
+<style type="text/css">
+	#file-input {
+		display: none;
+	}
 
+	.image-form {
+		display: inline;
+	}
 
+</style>
 
-
-<script type="text/javascript">
-// 	function showModal(){
-// 	$('.ui.modal').modal('show');
-// };
-</script>

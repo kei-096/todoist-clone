@@ -7,3 +7,11 @@ tr {
     vertical-align: inherit;
     border-color: inherit;
 }
+
+.image-upload > input
+{
+   display: none;
+}
+.image-upload > label{
+  cursor:pointer;
+}
