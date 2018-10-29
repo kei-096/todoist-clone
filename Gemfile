@@ -71,3 +71,16 @@ gem 'GiphyClient'
 gem 'carrierwave', '~> 1.0'
 gem 'remotipart', github: 'mshibuya/remotipart', ref: '88d9a7'
 gem 'jquery-rails'
+
+gem "rspec-rails", :group => [:test, :development]
+group :test do 
+  gem 'guard'
+  gem 'guard-rspec'
+  gem 'guard-puma'
+  gem 'rspec'
+  gem 'rspec-rails'
+  gem 'shoulda-matchers'
+  gem 'factory_girl_rails'
+  gem 'shoulda-callback-matchers'
+  gem 'rails-controller-testing'
+end 
