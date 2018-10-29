@@ -16,7 +16,6 @@ class TodosController < ApplicationController
 	end
 
 	def ajax_find
-		byebug
 		@todo = Todo.find(params[:id])
 		# This is new AJAX
 		# respond_to do |format|
@@ -53,6 +52,13 @@ class TodosController < ApplicationController
 		@todo = Todo.find(params['id'])
 		@todo.update(image_params)
 		redirect_to todos_path
+	end
+
+	def add_gif
+		@todo = Todo.find(params['id'])
+		# @todo.images << params['gif']
+		@todo.update(remote_images_urls: [params['gif']])
+		render json: @todo
 	end
 
 	def destroy

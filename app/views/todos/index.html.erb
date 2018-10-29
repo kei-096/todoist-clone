@@ -44,7 +44,7 @@
   <div class="content">
     <div class="description" id="description-add-gif<%=todo.id%>">
     	 <% if !todo.images.empty? %>
-    	 	<%= todo.images.each do |image| %>
+    	 	<% todo.images.each do |image| %>
     	 		<%= image_tag(image.url, :class => "ui medium rounded image") %>
     	 	<% end %>
     	 <% end %>
