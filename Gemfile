@@ -71,6 +71,7 @@ gem 'GiphyClient'
 gem 'carrierwave', '~> 1.0'
 gem 'remotipart', github: 'mshibuya/remotipart', ref: '88d9a7'
 gem 'jquery-rails'
+gem 'rails_12factor'
 
 gem "rspec-rails", :group => [:test, :development]
 group :test do 

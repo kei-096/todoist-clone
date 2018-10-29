@@ -51,8 +51,14 @@ class TodosController < ApplicationController
 	def add_image
 		@todo = Todo.find(params['id'])
 		@todo.update(image_params)
-		byebug
 		redirect_to todos_path
+	end
+
+	def add_gif
+		@todo = Todo.find(params['id'])
+		# @todo.images << params['gif']
+		@todo.update(remote_images_urls: [params['gif']])
+		render json: @todo
 	end
 
 	def destroy
@@ -70,7 +76,7 @@ class TodosController < ApplicationController
 				format.html
 			end
 		else
-			@todos = Todo.all
+			@todos = Todo.where(user_id: current_user.id )
 		end
 	end
 

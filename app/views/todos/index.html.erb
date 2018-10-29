@@ -1,5 +1,13 @@
-<h1>Your Todos</h1>
-<h2></h2>
+<div id=topbar>
+	<div class="ui six column">
+		<div class="column">
+			<img src="https://vignette.wikia.nocookie.net/logopedia/images/1/1b/Todoist.svg/revision/latest?cb=20151024153919" id="logo">
+		</div>
+	</div>
+</div>
+
+
+
 <div class="ui grid">
 	<div class="six wide column">
 		<i class="large inbox icon"></i>Inbox
@@ -44,7 +52,7 @@
   <div class="content">
     <div class="description" id="description-add-gif<%=todo.id%>">
     	 <% if !todo.images.empty? %>
-    	 	<%= todo.images.each do |image| %>
+    	 	<% todo.images.each do |image| %>
     	 		<%= image_tag(image.url, :class => "ui medium rounded image") %>
     	 	<% end %>
     	 <% end %>
