@@ -8,10 +8,22 @@ tr {
     border-color: inherit;
 }
 
+#topbar {
+	background-color: #282828;
+    border-color: transparent;
+    height: 43px;
+}
+
 .image-upload > input
 {
    display: none;
 }
 .image-upload > label{
   cursor:pointer;
+}
+
+#logo {
+	height: 24px;
+	width: auto;
+	float: left;
 }
