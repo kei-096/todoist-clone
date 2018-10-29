@@ -1,17 +1,5 @@
 require 'rails_helper'
 
-# describe User do 
-
-# 	Given(:user) { User.new }
-# 	Given(:email) { "test@gmail.com" }
-# 	Given(:name) { "Panda Man" }
-
-# 	describe "validates email uniquness" do
-# 		When (:output) { User.new(name, email) }
-# 		Then { expect(output).not_to raise_error }
-# 	end
-# end
-
 RSpec.describe User, :type => :model do
 
 	let(:user) { User.new }

@@ -5,7 +5,8 @@ class User < ApplicationRecord
 	has_secure_password
 	has_many :todos
 	validates :email, uniqueness: true
-	validates :name, :email, presence: true
+	validates :name, :email, :password, presence: true
+	validates :password, confirmation: { case_sensitive: true }
 
 	def self.create_with_auth_and_hash(authentication, auth_hash)
 		user = self.create!(

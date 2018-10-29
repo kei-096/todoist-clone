@@ -8,7 +8,7 @@ class UsersController < ApplicationController
 	  if @user.save
 	  	flash[:success] = 'Welcome to Todoist!'
 	  	session[:user_id] = @user.id
-	  	redirect_to '/'
+	  	redirect_to todos_path
 	  else
 	  	flash[:failure] = 'Invalid email or password.'
 	  	redirect_to '/signup'
@@ -20,7 +20,7 @@ class UsersController < ApplicationController
 	  if @user.password == params[:password]
 	    give_token
 	  else
-	    redirect_to home_url
+	    redirect_to todos_path
 	  end
 	end
 
